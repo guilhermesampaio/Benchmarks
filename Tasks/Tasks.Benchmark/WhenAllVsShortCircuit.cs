@@ -10,8 +10,8 @@ namespace Tasks.Benchmark
     [MemoryDiagnoser]
     public class WhenAllVsShortCircuit
     {
-        private readonly int iterations = 100;
-        private readonly int delayMilliseconds = 5;
+        private readonly int iterations = 1_000;
+        private readonly int delayMilliseconds = 10;
         private Task[] _tasks;
 
         [GlobalSetup]
@@ -33,13 +33,11 @@ namespace Tasks.Benchmark
             }
         }
 
-
         [Benchmark]
         public async Task WhenAll()
         {
             await Task.WhenAll(_tasks);
         }
-
 
         [Benchmark]
         public async Task ShortCircuit()
